@@ -26,11 +26,16 @@ const App = () => {
   let next = null
   let previous = null
 
-  if (match && match.params) {
-    const pokemonId = pokemonList.find(({ name }) => name === match.params.name).id
-    previous = pokemonList.find(({ id }) => id === pokemonId - 1)
-    next = pokemonList.find(({ id }) => id === pokemonId + 1)
+  if (match?.params?.name) {
+  const current = pokemonList.find(
+    ({ name }) => name === match.params.name
+  )
+
+  if (current) {
+    previous = pokemonList.find(({ id }) => id === current.id - 1) ?? null
+    next = pokemonList.find(({ id }) => id === current.id + 1) ?? null
   }
+}
 
   return (
     <Routes>
